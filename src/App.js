@@ -4,7 +4,7 @@ import Post from "./Post";
 import { auth, db } from "./firebase";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Input } from "@material-ui/core";
+import { Avatar, Button, FormControlLabel, Input } from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
 
 function getModalStyle() {
@@ -39,6 +39,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
+  const [userPhoto,setUserPhoto]=useState(null)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -97,6 +98,16 @@ function App() {
 
     setOpenSignIn(false);
   };
+
+ const  handleChange= (e)=>{
+    if(e.target.files[0]){
+      setUserPhoto(e.target.files[0])
+    }
+ }
+
+  const handleUserPhoto=()=>{
+    return(<input type="file" onChange={handleChange}/>)
+  }
 
   return (
     <div className="App"> 
@@ -196,15 +207,18 @@ function App() {
               key={id}
               postId={post.id}
               username={post.post.username}
-              commenter={user?.displayName}
+              user={user}
               caption={post.post.caption}
               imageUrl={post.post.imageUrl}
+              likes={post.post.likes}
             />
           ))}
         </div>
 
         <div className="app-postsRight">
           <h2>Instagram-Embed</h2>
+          <Avatar onClick={()=>handleUserPhoto()} style={{margin:"20px",width:"70px",height:"70px"}} src={user?.photoURL}/>
+    
         </div>
       </div>
 

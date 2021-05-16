@@ -53,3 +53,39 @@ padding: 20px;
     background: #5fa7f01e;
     border-top: 1px solid lightgray;
 }
+
+.post-likesModal{
+
+    display: flex;
+    position: absolute;
+    background:rgba(63, 63, 63, 0.472);
+    transform: translate(-200px,-700px);
+    width: 50vw;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.post-likesList{
+    position: relative;
+    display: inline-block;
+    background: rgb(255, 255, 255);
+    max-height:700px;
+    overflow:scroll;
+    width: 300px;
+    padding: 7px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+
+
+}
+.post-likesList>li>span{
+    margin:7px;
+    
+}
+
+
+
+
